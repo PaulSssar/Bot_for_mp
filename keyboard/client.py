@@ -1,16 +1,11 @@
-import requests
-from aiogram.utils.keyboard import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton, InlineKeyboardBuilder
-from config import URL
+from aiogram.utils.keyboard import ReplyKeyboardMarkup, KeyboardButton
 
-buy_button = KeyboardButton(text='/список_ботов')
-categories_button = KeyboardButton(text='/выбрать_категорию')
-
-keyboard_client = ReplyKeyboardMarkup(resize_keyboard=True, keyboard=[[buy_button, ], [categories_button, ]])
+buy_button = KeyboardButton(text='список ботов')
+categories_button = KeyboardButton(text='выбрать категорию')
+search_button = KeyboardButton(text='поиск по названию/описанию')
 
 
-def categories_kb():
-    categories = requests.get(URL + 'categories/').json()
-    buttons = [[KeyboardButton(text=category['name'])] for category in categories]
-    categories_kb = ReplyKeyboardMarkup(resize_keyboard=True, keyboard=buttons)
-    return categories_kb
-
+keyboard_client = ReplyKeyboardMarkup(
+    resize_keyboard=True,
+    keyboard=[[buy_button, ], [categories_button, ], [search_button, ]]
+)
